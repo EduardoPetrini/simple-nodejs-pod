@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simple-nodejs-deployment
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: simple-nodejs
+  template:
+    metadata:
+      labels:
+        app: simple-nodejs
+    spec:
+      containers:
+        - name: simple-nodejs
+          image: pps/simple-nodejs:1.1
+          imagePullPolicy: Never
+          env:
+            - name: NODE_ENV
+              value: production
